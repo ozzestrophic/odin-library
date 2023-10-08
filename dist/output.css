@@ -2526,6 +2526,10 @@ input[type="number"] {
   .md\:w-96 {
     width: 24rem;
   }
+
+  .md\:p-20 {
+    padding: 5rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
