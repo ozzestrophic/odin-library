@@ -87,12 +87,23 @@
         this.read = read;
       }
       function addToTable(myLibrary) {
-        myLibrary.forEach((element) => {
+        document.querySelector("tbody").innerHTML = "";
+        myLibrary.forEach((element, index) => {
           // create a new row in the table with the td of the object
-          const newRow = document.createElement("tr");
-          newRow.innerHTML = `<td>${element.title}</td><td>${element.author}</td><td>${element.pages}</td><td>${element.read}</td>`;
+          const newRow = document.createElement(`tr`);
+          newRow.setAttribute(`data-attribute`, `${index}`);
+          newRow.innerHTML = `<td>${element.title}</td><td>${element.author}</td><td>${element.pages}</td><td>${element.read}</td><button class="p-1 border border-gray-200 rounded-lg my-auto " id="deleteBtn" onclick="deleteRow(event)">Delete</button>`;
           document.querySelector("tbody").appendChild(newRow);
         });
+      }
+
+      function deleteRow(event) {
+        // get parent element data-attribute
+        const index = event.target.parentElement.getAttribute("data-attribute");
+        // remove it from the array
+        myLibrary.splice(index, 1);
+        // redraw the table
+        addToTable(myLibrary);
       }
 
       function addBookToLibrary(event) {
@@ -106,7 +117,6 @@
 
         myLibrary.push(newBook);
         console.table(myLibrary);
-        document.querySelector("tbody").innerHTML = "";
         addToTable(myLibrary);
         // reset form elements and close dialog
         myForm.reset();
