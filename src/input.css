@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+table,
+tr,
+th,
+td {
+  text-align: left;
+  /* border-collapse: collapse; */
+  border-radius: 400px;
+}
+
+tbody tr {
+  border: 1px solid rgb(201, 201, 201);
+}
+
+/* thead tr {
+  border: none;
+} */
+
+td,
+th {
+  padding: 1rem 1rem;
+}

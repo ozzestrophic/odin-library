@@ -684,6 +684,16 @@ video {
   margin-right: auto;
 }
 
+.my-10 {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.my-20 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -787,6 +797,18 @@ video {
   display: none;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.max-w-5xl {
+  max-width: 64rem;
+}
+
 .flex-shrink {
   flex-shrink: 1;
 }
@@ -825,6 +847,12 @@ video {
 
 .border-separate {
   border-collapse: separate;
+}
+
+.border-spacing-44 {
+  --tw-border-spacing-x: 11rem;
+  --tw-border-spacing-y: 11rem;
+  border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
 }
 
 .\!transform {
@@ -1599,6 +1627,10 @@ video {
   border-radius: 0.25rem;
 }
 
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+
 .rounded-b {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
@@ -1723,9 +1755,24 @@ video {
   border-style: none;
 }
 
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-blue-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .decoration-slice {
@@ -1838,6 +1885,10 @@ video {
      object-fit: scale-down;
 }
 
+.p-20 {
+  padding: 5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1894,9 +1945,9 @@ video {
   vertical-align: super;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-bold {
@@ -2295,6 +2346,28 @@ video {
 .content-\[\'this-is-also-valid\]-weirdly-enough\'\] {
   --tw-content: 'this-is-also-valid]-weirdly-enough';
   content: var(--tw-content);
+}
+
+table,
+tr,
+th,
+td {
+  text-align: left;
+  /* border-collapse: collapse; */
+  border-radius: 400px;
+}
+
+tbody tr {
+  border: 1px solid rgb(201, 201, 201);
+}
+
+/* thead tr {
+  border: none;
+} */
+
+td,
+th {
+  padding: 1rem 1rem;
 }
 
 @media (min-width: 640px) {
