@@ -28,22 +28,7 @@
               <th>del</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="title">Harry Potter</td>
-              <td class="author">JK</td>
-              <td class="pages">400</td>
-              <td class="read">True</td>
-              <td><button>x</button></td>
-            </tr>
-            <tr>
-              <td class="title">Harry Potter 2</td>
-              <td class="author">JK</td>
-              <td class="pages">500</td>
-              <td class="read">True</td>
-              <td><button>x</button></td>
-            </tr>
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
@@ -51,6 +36,7 @@
     <dialog id="insDialog" class="rounded-2xl">
       <div class="md:w-96 min-w-min p-6">
         <form
+          id="myForm"
           action=""
           method="dialog"
           autocomplete="off"
@@ -85,6 +71,7 @@
       const myLibrary = [];
       const showBtn = document.querySelector("#showBtn");
       const insDialog = document.querySelector("#insDialog");
+      const myForm = document.querySelector("#myForm");
 
       //   define form elements
       const titleBox = document.querySelector("#titleBox");
@@ -99,30 +86,38 @@
         this.pages = pages;
         this.read = read;
       }
+      function addToTable(myLibrary) {
+        myLibrary.forEach((element) => {
+          // create a new row in the table with the td of the object
+          const newRow = document.createElement("tr");
+          newRow.innerHTML = `<td>${element.title}</td><td>${element.author}</td><td>${element.pages}</td><td>${element.read}</td>`;
+          document.querySelector("tbody").appendChild(newRow);
+        });
+      }
 
-      function addBookToLibrary(newBook) {
+      function addBookToLibrary(event) {
         // const newBook = new Book(title, author, pages, read);
+        const newBook = new Book(
+          titleBox.value,
+          authorBox.value,
+          pagesBox.value,
+          readBox.checked
+        );
+
         myLibrary.push(newBook);
+        console.table(myLibrary);
+        document.querySelector("tbody").innerHTML = "";
+        addToTable(myLibrary);
+        // reset form elements and close dialog
+        myForm.reset();
+        insDialog.close();
       }
 
       showBtn.addEventListener("click", () => {
         insDialog.showModal();
       });
 
-      confirmBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        const newBook = new Book(
-          titleBox.value,
-          authorBox.value,
-          pagesBox.value,
-          readBox.value
-        );
-
-        insDialog.close(newBook);
-        addBookToLibrary(newBook);
-
-        console.table(myLibrary);
-      });
+      confirmBtn.addEventListener("click", addBookToLibrary);
     </script>
   </body>
 </html>
