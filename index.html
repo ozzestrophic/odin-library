@@ -9,7 +9,15 @@
   <body class="bg-blue-100">
     <div class="h-full">
       <div class="max-w-5xl bg-white p-20 my-20 rounded-3xl mx-auto">
-        <h1 class="text-center text-3xl font-bold">Library</h1>
+        <div class="flex justify-between">
+          <h1 class="text-center text-3xl font-bold">Library</h1>
+          <button
+            id="showBtn"
+            class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-800"
+          >
+            Add new book
+          </button>
+        </div>
         <table class="my-10 w-full table-auto border-spacing-44">
           <thead>
             <tr>
@@ -29,9 +37,9 @@
               <td><button>x</button></td>
             </tr>
             <tr>
-              <td class="title">Harry Potter</td>
+              <td class="title">Harry Potter 2</td>
               <td class="author">JK</td>
-              <td class="pages">400</td>
+              <td class="pages">500</td>
               <td class="read">True</td>
               <td><button>x</button></td>
             </tr>
@@ -40,8 +48,81 @@
       </div>
     </div>
 
+    <dialog id="insDialog" class="rounded-2xl">
+      <div class="md:w-96 min-w-min p-6">
+        <form
+          action=""
+          method="dialog"
+          autocomplete="off"
+          class="flex flex-col justify-start gap-4"
+        >
+          <label class="font-bold mb-4 text-center">Insert new book</label>
+          <input id="titleBox" type="text" placeholder="Title" />
+          <input id="authorBox" type="text" placeholder="Author" />
+          <input id="pagesBox" type="number" placeholder="Pages" />
+          <div class="flex gap-2 p-4">
+            <input id="readBox" type="checkbox" />
+            <label for="reabox">Read</label>
+          </div>
+          <div id="cancelBtn" class="flex gap-4 justify-stretch">
+            <button
+              class="flex-1 bg-white border border-gray-300 py-2 px-4 rounded-lg hover:bg-gray-100"
+            >
+              Cancel
+            </button>
+            <button
+              id="confirmBtn"
+              class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-800"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
     <script>
       const myLibrary = [];
+      const showBtn = document.querySelector("#showBtn");
+      const insDialog = document.querySelector("#insDialog");
+
+      //   define form elements
+      const titleBox = document.querySelector("#titleBox");
+      const authorBox = document.querySelector("#authorBox");
+      const pagesBox = document.querySelector("#pagesBox");
+      const readBox = document.querySelector("#readBox");
+      const confirmBtn = document.querySelector("#confirmBtn");
+
+      function Book(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+      }
+
+      function addBookToLibrary(newBook) {
+        // const newBook = new Book(title, author, pages, read);
+        myLibrary.push(newBook);
+      }
+
+      showBtn.addEventListener("click", () => {
+        insDialog.showModal();
+      });
+
+      confirmBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        const newBook = new Book(
+          titleBox.value,
+          authorBox.value,
+          pagesBox.value,
+          readBox.value
+        );
+
+        insDialog.close(newBook);
+        addBookToLibrary(newBook);
+
+        console.table(myLibrary);
+      });
     </script>
   </body>
 </html>
